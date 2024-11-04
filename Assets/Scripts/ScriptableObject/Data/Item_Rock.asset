@@ -13,10 +13,11 @@ MonoBehaviour:
   m_Name: Item_Rock
   m_EditorClassIdentifier: 
   displayName: "\uB3CC"
-  description: "\uADF8\uB0E5 \uB3CC \uC785\uB2C8\uB2E4."
+  description: "\uBC14\uC704\uC5D0\uC11C \uD68D\uB4DD\uD560 \uC218 \uC788\uC2B5\uB2C8\uB2E4."
   type: 2
   icon: {fileID: 21300000, guid: e61976ceaf6919c47853f5a7ea09288b, type: 3}
   dropPrefab: {fileID: 8938742746827439351, guid: cc9c82f3c6bd4674db9011e3d1e77190, type: 3}
   canStack: 1
   maxStackAmount: 12
   consumables: []
+  equipPrefab: {fileID: 0}
