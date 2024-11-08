@@ -7,7 +7,7 @@ public class CampFire : MonoBehaviour
     public int damage;
     public float damageRate;
 
-    List<IDamagalbe> things = new List<IDamagalbe>();
+    List<IDamagable> things = new List<IDamagable>();
 
     void Start()
     {
@@ -24,17 +24,17 @@ public class CampFire : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.TryGetComponent(out IDamagalbe damagalve))
+        if (other.TryGetComponent(out IDamagable damagable))
         {
-            things.Add(damagalve);
+            things.Add(damagable);
         }
     }
 
     private void OnTriggerExit(Collider other)
     {
-        if(other.TryGetComponent(out IDamagalbe damagalbe))
+        if(other.TryGetComponent(out IDamagable damageable))
         {
-            things.Remove(damagalbe);
+            things.Remove(damageable);
         }
     }
 }

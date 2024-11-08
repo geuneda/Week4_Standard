@@ -3,12 +3,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public interface IDamagalbe
+public interface IDamagable
 {
     void TakePhysicalDamage(int damage);
 }
 
-public class PlayerCondition : MonoBehaviour, IDamagalbe
+public class PlayerCondition : MonoBehaviour, IDamagable
 {
     public UICondition uiCondition;
 

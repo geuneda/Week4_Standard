@@ -18,11 +18,17 @@ public class EquipTool : Equip
 
     private Animator animator;
     private Camera _camera;
+    private Vector3 screenPoint;
+    private LayerMask canHitLayers;
 
     void Start()
     {
         animator = GetComponent<Animator>();
         _camera = Camera.main;
+        
+        screenPoint = new Vector3(Screen.width / 2, Screen.height / 2, 0);
+        
+        canHitLayers = LayerMask.GetMask("CanHit");
     }
 
     public override void OnAttackInput()
@@ -45,14 +51,18 @@ public class EquipTool : Equip
 
     public void OnHit()
     {
-        Ray ray = _camera.ScreenPointToRay(new Vector3(Screen.width / 2, Screen.height / 2, 0));
-        RaycastHit hit;
-
-        if(Physics.Raycast(ray, out hit, attackDistance))
+        // TODO : 공격 및 자원채집 대상에 CanHit 레이어 닷것
+        Ray ray = _camera.ScreenPointToRay(screenPoint);
+        if (Physics.Raycast(ray, out RaycastHit hit, attackDistance, canHitLayers))
         {
-            if(doesGatherResources && hit.collider.TryGetComponent(out Resource resource))
+            if (doesGatherResources && hit.collider.TryGetComponent(out Resource resource))
             {
                 resource.Gather(hit.point, hit.normal);
+            }
+
+            if (doesDealDamager && hit.collider.TryGetComponent(out IDamagable damagable))
+            {
+                damagable.TakePhysicalDamage(damage);
             }
         }
     }
