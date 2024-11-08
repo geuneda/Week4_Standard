@@ -48,7 +48,7 @@ public class PlayerCondition : MonoBehaviour, IDamagalbe
 
     private void Die()
     {
-        Debug.Log("ав╬З╢ы");
+        Debug.Log("Лё╫Л²▄");
     }
 
     public void TakePhysicalDamage(int damage)
