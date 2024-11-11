@@ -1,9 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
+using Item;
 using UnityEngine;
 
 public class EquipTool : Equip
 {
+    private IWeaponStrategy weaponStrategy;
+    
     public float attackRate;
     private bool attacking;
     public float attackDistance;
@@ -51,9 +54,14 @@ public class EquipTool : Equip
 
     public void OnHit()
     {
-        // TODO : 공격 및 자원채집 대상에 CanHit 레이어 닷것
+        // TODO : 공격 및 자원채집 대상에 CanHit 레이어 달것
         Ray ray = _camera.ScreenPointToRay(screenPoint);
-        if (Physics.Raycast(ray, out RaycastHit hit, attackDistance, canHitLayers))
+
+        if (weaponStrategy != null)
+        {
+            weaponStrategy.UseWeapon();
+        }
+        else if (Physics.Raycast(ray, out RaycastHit hit, attackDistance, canHitLayers))
         {
             if (doesGatherResources && hit.collider.TryGetComponent(out Resource resource))
             {
