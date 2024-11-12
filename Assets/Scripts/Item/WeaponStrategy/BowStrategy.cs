@@ -13,10 +13,20 @@ namespace Item
         
         public void UseWeapon()
         {
-            ShootArrow();
+            LaunchArrow();
         }
 
-        private Vector3 ShootArrow()
+        public void LaunchArrow()
+        {
+            GameObject arrow = Instantiate(arrowPrefab, launchPoint.position, Quaternion.identity);
+            Rigidbody rb = arrow.GetComponent<Rigidbody>();
+
+            Vector3 direction = ArrowDirection();
+            rb.velocity = direction * launchForce;
+        }
+        
+        // 발사각 계산
+        public Vector3 ArrowDirection()
         {
             float radianAngle = Mathf.Deg2Rad * launchAngle;
             Vector3 direction = new Vector3(Mathf.Cos(radianAngle), Mathf.Sin(radianAngle), 0);
