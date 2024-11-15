@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class EquipTool : Equip
 {
+    private static readonly int Attack = Animator.StringToHash("Attack");
     private IWeaponStrategy weaponStrategy;
     
     public float attackRate;
@@ -41,7 +42,7 @@ public class EquipTool : Equip
             if (CharacterManager.Instance.Player.condition.UseStamina(useStamina))
             {
                 attacking = true;
-                animator.SetTrigger("Attack");
+                animator.SetTrigger(Attack);
                 Invoke("OnCanAttack", attackRate);
             }
         }

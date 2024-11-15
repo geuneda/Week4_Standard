@@ -28,8 +28,6 @@ public class Equipment : MonoBehaviour
     // 장비 변경 예제
     public void SetWeapon()
     {
-        // 활 장착
-        // new "" 부분은 무기 장착 방법에 따라 변경가능성
         SetWeapon(new BowStrategy());
         Attack(); // 화살 발사
         SetWeapon(new GunStrategy());
@@ -46,11 +44,9 @@ public class Equipment : MonoBehaviour
 
     public void UnEquip()
     {
-        if (curEquip != null)
-        {
-            Destroy(curEquip.gameObject);
-            curEquip = null;
-        }
+        if (!curEquip) return;
+        Destroy(curEquip.gameObject);
+        curEquip = null;
     }
     
     // 전략 패턴을 적용한 새로운 공격 시스템
@@ -62,7 +58,7 @@ public class Equipment : MonoBehaviour
         }
         else
         {
-            Debug.Log("No strategy selected");
+            Debug.Log("장착된 장비가 없음.");
         }
     }
     
